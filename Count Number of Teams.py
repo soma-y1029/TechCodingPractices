@@ -1,3 +1,5 @@
+#https://leetcode.com/problems/count-number-of-teams/
+    
 class Solution:
     def numTeams(self, rating: List[int]) -> int:
         # backtrack 
