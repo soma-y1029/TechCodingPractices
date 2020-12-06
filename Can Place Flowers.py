@@ -4,12 +4,11 @@ class Solution:
     def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
         i = 0
         while i < len(flowerbed):
-            #print(f'{i=}, {n=}, {flowerbed=}')
+            #nt(f'{i=}, {n=}, {flowerbed=}')
             if flowerbed[i]:
                 i += 2
-                continue
                 
-            if not flowerbed[i]:
+            elif not flowerbed[i]:
                 left = flowerbed[i-1] if i > 0 else flowerbed[0]
                 right = flowerbed[i+1] if i < len(flowerbed)-1 else 0
                 #print(left, right)
@@ -17,10 +16,10 @@ class Solution:
                     flowerbed[i] = 1
                     n -= 1
                     i += 2 
-                    continue
-                i += 1
+                else:
+                    i += 1
             
-        if n <= 0:
-            return True
+            if n <= 0:
+                return True
             
         return False
