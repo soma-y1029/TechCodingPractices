@@ -15,3 +15,6 @@ class Solution:
         root.left = self.sortedArrayToBST(nums[:mid])
         root.right = self.sortedArrayToBST(nums[mid+1:])
         return root
+    
+        # O(lgn) for slicing 
+        # O(n) for creating Tree
