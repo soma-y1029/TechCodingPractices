@@ -8,33 +8,24 @@ https://leetcode.com/problems/intersection-of-two-linked-lists/
 
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
-        # count length 
-        list_A, list_B = headA, headB
-        len_A, len_B = 0, 0
+        lA, lB = headA, headB
+        # find length of two list
+        lenA, lenB = 0, 0
+        while lA or lB:
+            if lA:
+                lA = lA.next
+                lenA += 1
+            if lB:
+                lB = lB.next
+                lenB += 1
         
-        # get length for A and B
-        while list_A or list_B:
-            if list_A:
-                list_A = list_A.next
-                len_A += 1
-            if list_B:
-                list_B = list_B.next
-                len_B += 1
-
-        list_A, list_B = headA, headB
+        lA, lB = headA, headB
+        if lenA < lenB:
+            lA, lB = headB, headA
+            lenA, lenB = lenB, lenA
+         # A is always longer
         
-        print(len_A, len_B)
-        # move pointer of longer list to match position
-        for _ in range(abs(len_A - len_B)):
-            if len_A > len_B:
-                list_A = list_A.next
-            else:
-                list_B = list_B.next
-        
-        # print(list_A, list_B)
-        # now both headA and headB points same position
-        # check for intersection
-        while list_A != list_B:
-            list_A, list_B = list_A.next, list_B.next
-            
-        return list_A
+        for _ in range(lenA-lenB): lA = lA.next
+        while lA or lB:
+            if lA == lB: return lA
+            lA, lB = lA.next, lB.next
