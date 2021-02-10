@@ -1,11 +1,11 @@
 https://leetcode.com/problems/coin-change/submissions/
 
 class Solution:
-    def coinChange(self, coins: List[int], amount: int) -> int:
+    def coinChange(self, coins: List[int], amount: int, num_coin=0) -> int:
         dp = [0] + [float('inf')]*amount
-        for i in range(1, amount+1):
+        for amt in range(1, amount+1):
             for coin in coins:
-                if coin <= i:
-                    dp[i] = min(dp[i], dp[i-coin]+1)
-        
+                if amt-coin >=0: dp[amt] = min(1 + dp[amt-coin], dp[amt])
         return dp[amount] if dp[amount] != float('inf') else -1
+        
+        
